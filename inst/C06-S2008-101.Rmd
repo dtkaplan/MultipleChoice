@@ -1,0 +1,200 @@
+---
+title: "Graphics on Multiple Variables"
+author: "Daniel Kaplan"
+date: "2008"
+output: html_document
+runtime: shiny
+---
+
+```{r include = FALSE}
+library(MultipleChoice)
+# Scorekeeper <<- list(problem=NULL, attempts=NULL, score=NULL)
+```
+
+
+The graphic (from the New York *Times*, April 17, 2008) shows the 
+fitted values from a model of the survival of babies born extremely prematurely.
+
+<!-- TEX COMMAND NOT FOUND graphicsfile babylarge.jpg  -->
+<!-- begin tabular
+ ../Figures/babylarge-2.jpg TEX COMMAND NOT FOUND   
+ ../Figures/babylarge-1.jpg TEX COMMAND NOT FOUND   
+<!-- end tabular --> -->
+
+
+<!-- begin quotation -->
+
+*Caption: "A new study finds that doctors could better
+estimate an extremely premature baby's chance of survival by
+considering factors including birth weight, length of gestation, sex
+and whether the mother was given steroids to help develop the baby's lungs."*
+<!-- end quotation -->
+
+
+Two different response variables are plotted: (1) the probability of survival 
+and (2) the probability of survival without moderate to severe disabilities.
+Remarkably for a statistical graphic, there are three explanatory variables:
+<!-- begin enumerate -->
+
+#. Birth weight (measured in pounds (lb) in the graphic).
+<!--  #. Whether the birth was a single baby or involved multiple babies. -->
+#. The sex of the baby.
+#. Whether the mother took steroids intended to help the fetus's lungs develop.  
+<!-- end enumerate -->
+
+Focus on the survival rates without disabilities --- the darker bars in
+the graphic.
+
+<!-- begin enumerate -->
+
+
+### Question 1
+
+Estimate the effect of giving steroids, that is, how much extra
+survival probability is associated with giving steroids?
+<!-- begin MultipleChoice -->
+
+a. No extra survival probability with steroids.
+b. About 1-5 percentage points
+c. RIGHT About 10 to 15 percentage points
+d. About 50 percentage points
+e. About 75 percentage points
+<!-- end MultipleChoice -->
+
+```{r echo = FALSE}
+id1 <- "C06-S2008-101-1" # not just the value, but the variable
+                         # name needs to be unique.
+MC_question(id1, 
+            a = "not right",
+            b = "still not right",
+            c = "yes, that's it.",
+            d = "sorry, man",
+            e = "last chance")
+callModule(MC, id1, id1,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+
+### Question 2
+
+For the babies where the mother was given steroids, how does the
+survival probability depend on the birth weight of the baby:
+
+
+a. No dependence.
+b. Increases by about 25 percentage points.
+c. Increases by about 50 percentage points.
+d. Increases by about 25 percentage points per pound.
+e. RIGHT Increases by about 50 percentage points per pound.
+
+
+```{r echo = FALSE}
+id2 <- "C06-S2008-101-2"
+MC_question(id2, 
+            a = "not right",
+            b = "still not right",
+            c = "no, that's not it.",
+            d = "sorry, man",
+            e = "**RIGHT**")
+callModule(MC, id2, id2,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+
+### Question 3
+
+For the babies where the mother was given steroids, how does the
+survival probability depend on the sex of the baby?
+
+a. No dependence.
+b. RIGHT Higher for girls by about 15 percentage points.
+c. Higher for boys by about 20 percentage points.
+d. Higher for girls by about 40 percentage points.
+e. Higher for boys by about 40 percentage points.
+
+```{r echo = FALSE}
+id3 <- "C06-S2008-101-3"
+MC_question(id3, 
+            a = "not right",
+            b = "**RIGHT**",
+            c = "no, that's not it.",
+            d = "sorry, man",
+            e = "last chance")
+callModule(MC, id3, id3,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+
+### Question 4
+
+How would you look for an interaction between birth weight and baby's sex in accounting for survival?
+
+a. Compare survival of males to females at a given weight.
+b. Compare survival of males across different weights.
+c. Compare survival of females across different weights.
+d. RIGHT Compare the difference in survival between males and females across different weights.
+
+```{r echo = FALSE}
+id4 <- "C06-S2008-101-4"
+MC_question(id4, 
+            a = "not right",
+            b = "still not right",
+            c = "no, that's not it.",
+            d = "**RIGHT**")
+callModule(MC, id4, id4,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+
+### Question 5
+
+Do you see signs of a substantial interaction between birth
+weight and sex in accounting for survival?  (Take substantial to
+mean "greater than 10 percentage points.") 
+
+```{r echo = FALSE}
+id5 <- "C06-S2008-101-5"
+MC_question(id5, 
+            yes = "**WRONG**",
+            no  = "**RIGHT**")
+callModule(MC, id5, id5,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+### Question 6
+
+How would you look for a substantial interaction between steroid use and baby's sex in accounting for survival. 
+
+a. Compare survival of males to females when the mother was given steroids.
+b. Compare survival of males between steroid given and steroid not
+  given.
+c. Compare survival of females between steroid given and steroid
+  not given.
+d. RIGHT Compare the difference in survival between males and females
+  between steroid given and steroid not given.
+
+```{r echo = FALSE}
+id6 <- "C06-S2008-101-6"
+MC_question(id6, 
+            a = "not right",
+            b = "still not right",
+            c = "no, that's not it.",
+            d = "**RIGHT**")
+callModule(MC, id6, id6,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+
+### Question 7
+
+Do you see signs of a substantial interaction between steroid use and sex in accounting for survival?  (Take substantial to mean "greater than 10 percentage points.") 
+
+```{r echo = FALSE}
+id7 <- "C06-S2008-101-7"
+MC_question(id7, 
+            yes = "**WRONG**",
+            no  = "**RIGHT**")
+callModule(MC, id7, id7,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
