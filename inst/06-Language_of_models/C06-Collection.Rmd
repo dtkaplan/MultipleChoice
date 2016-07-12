@@ -1,0 +1,62 @@
+---
+title: "Chapter 6 Problems"
+author: "Daniel Kaplan"
+date: "July 12, 2016"
+output: html_document
+runtime: shiny
+---
+
+```{r include=FALSE}
+require(MultipleChoice)
+Scorekeeper <<- list(problem=NULL, attempts=NULL, score=NULL)
+show_hints <- TRUE
+```
+
+# Multiple Choice
+
+## Problem 1
+
+```{r child = "C06-S2008-101.Rmd"} 
+```
+
+## Problem 2
+
+## Scores on the multiple choice questions
+
+```{r echo = FALSE}
+actionButton("update", "Send scores.")
+tableOutput("scores")
+output$scores <- renderTable({
+  if (input$update == 0) return(NULL)
+  data.frame(problem = Scorekeeper$problem, 
+             answer = Scorekeeper$answer,
+             attempts = Scorekeeper$attempts, 
+             score = Scorekeeper$score, 
+             stringsAsFactors = FALSE)
+})
+```
+
+
+
+# Computational Technique
+
+## Essay 1
+
+```{r child = "C06-graphing-models.Rmd"}
+```
+
+## A related problem idea for DataCamp
+
+Show graphs of fitted models. Ask the student to make them.
+
+# Essays
+
+## One
+
+```{r child = "C06-S2008-lang2.Rmd"}
+```
+
+## Two
+
+```{r child = "C06-S2007-9.Rmd"}
+```

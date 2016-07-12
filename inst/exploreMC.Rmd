@@ -12,7 +12,7 @@ Scorekeeper <<- list(problem=NULL, attempts=NULL, score=NULL)
 show_hints <- TRUE
 ```
 
-```{r child = "C06-S2008-101.Rmd"} 
+```{r child = "06-Language_of_models/C06-S2008-101.Rmd"} 
 ```
 
 ## Question 1.
