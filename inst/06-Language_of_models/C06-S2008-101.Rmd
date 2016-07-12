@@ -59,7 +59,6 @@ e. About 75 percentage points
 <!-- end MultipleChoice -->
 
 ```{r echo = FALSE}
-show_hints <- TRUE
 C06_S2008_101$id1 <- "C06-S2008-101-1" # not just the value, but the variable
                          # name needs to be unique.
 MC_question(C06_S2008_101$id1, 

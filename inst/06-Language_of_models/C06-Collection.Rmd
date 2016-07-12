@@ -21,6 +21,9 @@ show_hints <- TRUE
 
 ## Problem 2
 
+```{r child = "C06-M102.Rmd"}
+```
+
 ## Scores on the multiple choice questions
 
 ```{r echo = FALSE}
@@ -58,5 +61,12 @@ Show graphs of fitted models. Ask the student to make them.
 
 ## Two
 
-```{r child = "C06-S2007-9.Rmd"}
+```{r child = "C06-Prob-4-3.Rmd"}
+```
+
+NOTE TO AUTHOR: see "C06-S2007-9.Rmd" which seems to be the same problem, but hand-written
+
+## Three
+
+```{r child = "C06-M105.Rmd"}
 ```

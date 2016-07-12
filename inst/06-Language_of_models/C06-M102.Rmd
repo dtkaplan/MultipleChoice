@@ -1,0 +1,128 @@
+---
+title: "Explanatory and response variables"
+author: "Daniel Kaplan based on a problem from George Cobb"
+date: "2008"
+output: html_document
+runtime: shiny
+---
+
+```{r include = FALSE}
+library(statisticalModeling)
+library(mosaic)
+library(MultipleChoice)
+Scorekeeper <<- list(problem=NULL, attempts=NULL, score=NULL)
+C06_M102 <- new.env()
+```
+
+In studies of employment discrimination, several attributes of employees are often relevant: age, sex, race, years of experience, salary, whether promoted, whether laid off, etc. 
+
+
+For each of the following questions, indicate which is the response variable and which is the explanatory variable.
+
+a. Are men paid more than women? 
+    - Response variable:
+```{r echo = FALSE}
+C06_M102$id1r <- "M102-ar" # not just the value, but the variable
+# name needs to be unique.
+MC_question(C06_M102$id1r, 
+            "age", "sex", "race", "years.experience",
+            salary = "**RIGHT**", "promoted","laid.off")
+callModule(MC, C06_M102$id1r, C06_M102$id1r,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+    - Explanatory variable
+```{r echo = FALSE}
+C06_M102$id1x <- "M102-ax" # not just the value, but the variable
+# name needs to be unique.
+MC_question(C06_M102$id1x, 
+            "age", sex = "**RIGHT**", "race", "years.experience",
+            "salary", "promoted", "laid.off")
+callModule(MC, C06_M102$id1x, C06_M102$id1x,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+```{asis}
+For many people, it can be confusing at first to decide what is the response variable and what is the explanatory variable.  In this question, there are two variables: salary and sex.  There are two kinds of questions you might ask with these variables: "Can I tell something about how much a person is paid given their sex?" and "Can I tell what sex a person is, given how much they are paid?"  Those questions are different.  
+
+In examining possible employment discrimination, the issue is whether a person's sex influences how much they are paid.  So sex is the explanatory variable and pay is the response variable.
+```
+
+b. On average, how much extra salary is a year of experience worth? 
+    - Response variable:
+```{r echo = FALSE}
+C06_M102$id2r <- "M102-br" # not just the value, but the variable
+# name needs to be unique.
+MC_question(C06_M102$id2r, 
+            "age", "sex", "race", "years.experience",
+            salary = "**RIGHT**", "promoted","laid.off")
+callModule(MC, C06_M102$id2r, C06_M102$id2r,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+    - Explanatory variable
+```{r echo = FALSE}
+C06_M102$id2x <- "M102-bx" # not just the value, but the variable
+# name needs to be unique.
+MC_question(C06_M102$id2x, 
+            "age", "sex", "race", "years.experience" = "**RIGHT**",
+            "salary", "promoted", "laid.off")
+callModule(MC, C06_M102$id2x, C06_M102$id2x,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+```{asis}
+The response variable is the person's salary.  The explanatory
+variable is how much experience they have.
+```
+
+c. Are whites more likely than blacks to be promoted? 
+    - Response variable:
+```{r echo = FALSE}
+C06_M102$id3r <- "M102-cr" # not just the value, but the variable
+# name needs to be unique.
+MC_question(C06_M102$id3r, 
+            "age", "sex", "race", "years.experience",
+            "salary", "promoted" = "**RIGHT**","laid.off")
+callModule(MC, C06_M102$id3r, C06_M102$id3r,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+    - Explanatory variable
+```{r echo = FALSE}
+C06_M102$id3x <- "M102-cx" # not just the value, but the variable
+# name needs to be unique.
+MC_question(C06_M102$id3x, 
+            "age", "sex", "race" = "**RIGHT**", "years.experience",
+            "salary", "promoted", "laid.off")
+callModule(MC, C06_M102$id3x, C06_M102$id3x,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+```{asis}
+The response variable is whether the person was promoted or not.
+```
+
+d. Are older employees more likely to be laid off than younger ones?  
+    - Response variable:
+```{r echo = FALSE}
+C06_M102$id4r <- "M102-dr" 
+MC_question(C06_M102$id4r, 
+            "age", "sex", "race", "years.experience",
+            "salary", "promoted","laid.off" = "**RIGHT**")
+callModule(MC, C06_M102$id4r, C06_M102$id4r,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+    - Explanatory variable
+```{r echo = FALSE}
+C06_M102$id4x <- "M102-dx" 
+MC_question(C06_M102$id4x, 
+            "age" = "**RIGHT**", "sex", "race", "years.experience",
+            "salary", "promoted", "laid.off")
+callModule(MC, C06_M102$id4x, C06_M102$id4x,
+           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
+```
+
+```{asis}
+In this exercise, there is just one explanatory variable being offered in each setting.  However, in real situations you will often be interested in examining **multiple** explanatory variables at the same time.  
+```
+
+
+[Note: Thanks to George Cobb.]

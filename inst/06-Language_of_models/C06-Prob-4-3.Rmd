@@ -1,0 +1,112 @@
+<!--  Author: Daniel Kaplan -->
+<!--  Subject: Shapes of models -->
+
+```{r echo = FALSE}
+set.seed(3523)
+As = runif(10,min=0,max=10)
+Ds = 5 + 1.3*As + rnorm(length(As))
+Ak = runif(14,min=10,max=20)
+Dk = 27 - 1.3*Ak + rnorm(length(Ak))
+gps = c(rep("S",length(As)), rep("K",length(Ak)))
+df = data.frame( A = c(As,Ak), D = c(Ds,Dk), G = gps)
+basic.plot = function(){
+  plot( D ~ A, pch=gps, data=df, xlim=c(0,20), ylim=c(0,15))
+}
+basic.plot()
+```
+
+The drawing above shows some data involving three variables:
+
+#. D --- a quantitative variable
+#. A --- a quantitative variable
+#. G --- a categorical variable with two levels: S & K 
+
+On each of the plots, sketch a graph of the fitted model function of the indicated structure.
+
+
+
+Only a qualitative sketch is needed.  It will be good enough to draw out the graph on a piece of paper, roughly approximating the patterns of S and K seen in the graph.  Then draw the model values right on your paper.
+  
+  
+
+  
+  
+Example: D ~ G
+
+```{r fig-4-3-ex1,fig = TRUE,pdf = TRUE,include = TRUE,width=3,height=3,echo = FALSE}
+basic.plot()
+m1 = lm( D ~ 1, data=df, subset=G=="S")
+h = coef(m1)[1]
+lines( c(0,11),c(h,h), lwd=5)
+m2 = lm( D ~ 1, data=df, subset=G=="K")
+h = coef(m2)[1]
+lines( c(9,20),c(h,h), lwd=5)
+```
+
+
+Draw these models:
+<!-- begin itemize -->
+
+a. D ~ A + G
+    
+    ANSWER
+    ```{r fig-4-3-q1,fig = TRUE,pdf = TRUE,include = TRUE,width=3,height=3,echo = FALSE}
+basic.plot()
+m = lm( D ~ A+G, data=df)
+h = coef(m)
+lines( c(0,11), h[1] + h[3] + h[2]*c(0,11), lwd=5)
+lines( c(9,20), h[1] + h[2]*c(9,20), lwd=5)
+```
+
+#. D ~ A * G
+    
+    ANSWER
+    ```{r fig-4-3-q2,fig = TRUE,pdf = TRUE,include = TRUE,width=3,height=3,echo = FALSE}
+basic.plot()
+m = lm( D ~ A*G, data=df)
+h = coef(m)
+lines( c(0,11), h[1] + h[3] + (h[2]+h[4])*c(0,11), lwd=5)
+lines( c(9,20), h[1] + h[2]*c(9,20), lwd=5)
+```
+#.  D ~ A - 1
+       
+    ANSWER
+    ```{r fig-4-3-q3,fig = TRUE,pdf = TRUE,include = TRUE,width=3,height=3,echo = FALSE}
+basic.plot()
+m = lm( D ~ A-1, data=df)
+h = coef(m)
+lines( c(0,9), h[1]*c(0,9), lwd=5)
+lines( c(11,20), h[1]*c(11,20), lwd=5)
+```
+#. D ~ 1
+   
+    ANSWER
+    ```{r fig-4-3-q4,fig = TRUE,pdf = TRUE,include = TRUE,width=3,height=3,echo = FALSE}
+basic.plot()
+m = lm( D ~ 1, data=df)
+h = coef(m)
+lines( c(0,9), h[1] + 0 *c(0,9), lwd=5)
+lines( c(11,20), h[1] + 0*c(11,20), lwd=5)
+```
+
+#. D ~ A
+    
+    ANSWER
+    ```{r fig-4-3-q5,fig = TRUE,pdf = TRUE,include = TRUE,width=3,height=3,echo = FALSE}
+basic.plot()
+m = lm( D ~ A, data=df)
+h = coef(m)
+lines( c(0,9), h[1] + h[2]*c(0,9), lwd=5)
+lines( c(11,20), h[1]+h[2]*c(11,20), lwd=5)
+```
+#. poly(A, 2)
+    
+    ANSWER
+    ```{r fig-4-3-q6,fig = TRUE,pdf = TRUE,include = TRUE,width=3,height=3,echo = FALSE}
+basic.plot()
+m = lm( D ~ poly(A,2), data=df)
+xx = seq(0,20,length=100)
+yy = predict(m, newdata=list(A=xx))
+lines( xx, yy, lwd=5)
+```
+
