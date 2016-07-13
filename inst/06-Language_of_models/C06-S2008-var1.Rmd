@@ -1,0 +1,63 @@
+<!--  Author=DTK, -->
+<!--  Subject=graphics technique, adding onto a plot -->
+<!--  Title: Drawing Graphics Incrementally -->
+
+```{r include = FALSE}
+require(statisticalModeling)
+require(mosaic)
+require(dplyr)
+```
+
+I'M NOT SURE WHAT TO DO WITH THIS ONE. IT COULD GO IN THE CHAPTER "What is explaining an outcome?" The distribution of the 
+
+
+Sometimes when making a graphic, you want to change some aspect of it
+or add new elements to it.  To illustrate, here are commands for 
+making simple density plot in the ordinary way.  
+```
+gf_density( ~ height + fill:"black", data = Galton) %>%
+gf_density( ~ height + fill:sex, alpha = 0.25, data = Galton) 
+```
+
+```{r}
+ggplot() + 
+  geom_density(data = select(Galton, height), aes(x = height), fill = "gray") +
+  geom_density(data = Galton, aes(x = height, fill = sex, color = sex), alpha = .5) +
+  facet_wrap( ~ sex)
+```
+
+In looking at the plot, you realize that you want a better label for
+the horizontal axis. You can do this by *adding* on a new component to the plot specifying the axis label.
+```
+gf_density( ~ height, data = Galton) + xlab("Child's height (in)")
+```
+
+Use the `+` sign to add components that don't start with `gf_` such as `xlab()`, `ylab()`, `facet_wrap()`, and so on.
+Now suppose you decide to superimpose density plots of the mothers' and
+fathers' heights.  To plot each of these variables individually, you would use a command like this:
+```
+gf_density( ~ mother, data = Galton)
+```
+
+But we want to overlay the distribution of both the fathers and mothers so we can readily compare them to the children. For this purpose, a bit of data wrangling is required: creating one variable with the parents' heights and another indicating the sex of the parent.
+
+```{r}
+Parents <- 
+  Galton %>%
+  group_by(family) %>%
+  filter(row_number() == 1) %>%
+  ungroup() %>%
+  select(father, mother) %>% 
+  tidyr::gather(key = parent, value = parent_height, father, mother)
+```
+
+You can add this component to the graph by connecting it to the previous components. Use `%>%` to add a component that does start with `gf_`.
+
+```{r eval = FALSE}
+gf_density( ~ height + fill:sex, alpha = 0.5, color = NULL, data = Galton) %>%  
+  gf_density( ~ parent_height + fill:parent, alpha = 0.3, color = NULL, data = Parents) +
+  xlab("Child's height (in)") + 
+  facet_wrap( ~ sex)
+```
+
+Data wrangling can be an important part of preparing data to be graphed.

@@ -43,7 +43,7 @@ output$scores <- renderTable({
 
 # Computational Technique
 
-## Essay 1
+## DataCamp 1
 
 ```{r child = "C06-graphing-models.Rmd"}
 ```
@@ -51,6 +51,16 @@ output$scores <- renderTable({
 ## A related problem idea for DataCamp
 
 Show graphs of fitted models. Ask the student to make them.
+
+## DataCamp 2
+
+```{r child = "C06-S2008-var1.Rmd"}
+```
+
+## DataCamp 3
+
+```{r child = "C06-language101.Rmd"}
+```
 
 # Essays
 

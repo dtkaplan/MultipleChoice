@@ -9,7 +9,6 @@ runtime: shiny
 ```{r include = FALSE}
 library(MultipleChoice)
 Scorekeeper <<- list(problem=NULL, attempts=NULL, score=NULL)
-C06_S2008_101 <- new.env()
 ```
 
 
@@ -53,24 +52,19 @@ survival probability is associated with giving steroids?
 
 a. No extra survival probability with steroids.
 b. About 1-5 percentage points
-c. RIGHT About 10 to 15 percentage points
+c. About 10 to 15 percentage points
 d. About 50 percentage points
 e. About 75 percentage points
 <!-- end MultipleChoice -->
 
 ```{r echo = FALSE}
-C06_S2008_101$id1 <- "C06-S2008-101-1" # not just the value, but the variable
-                         # name needs to be unique.
-MC_question(C06_S2008_101$id1, 
+MC_question("C06_S2008_101-1", 
             a = "not right",
             b = "still not right",
             c = "yes, that's it.",
             d = "sorry, man",
             e = "last chance")
-callModule(MC, C06_S2008_101$id1, C06_S2008_101$id1,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
-
 
 ### Question 2
 
@@ -82,20 +76,16 @@ a. No dependence.
 b. Increases by about 25 percentage points.
 c. Increases by about 50 percentage points.
 d. Increases by about 25 percentage points per pound.
-e. RIGHT Increases by about 50 percentage points per pound.
+e. Increases by about 50 percentage points per pound.
 
 
 ```{r echo = FALSE}
-C06_S2008_101$id2 <- "C06-S2008-101-2"
-MC_question(C06_S2008_101$id2, 
+MC_question("C06_S2008_101-2", 
             a = "not right",
             b = "still not right",
             c = "no, that's not it.",
             d = "sorry, man",
             e = "**RIGHT**")
-callModule(MC, C06_S2008_101$id2, C06_S2008_101$id2,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
-
 ```
 
 
@@ -105,21 +95,18 @@ For the babies where the mother was given steroids, how does the
 survival probability depend on the sex of the baby?
 
 a. No dependence.
-b. RIGHT Higher for girls by about 15 percentage points.
+b. Higher for girls by about 15 percentage points.
 c. Higher for boys by about 20 percentage points.
 d. Higher for girls by about 40 percentage points.
 e. Higher for boys by about 40 percentage points.
 
 ```{r echo = FALSE}
-C06_S2008_101$id3 <- "C06-S2008-101-3"
-MC_question(C06_S2008_101$id3, 
+MC_question("C06_S2008_101-3", 
             a = "not right",
             b = "**RIGHT**",
             c = "no, that's not it.",
             d = "sorry, man",
             e = "last chance")
-callModule(MC, C06_S2008_101$id3, C06_S2008_101$id3,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 
 
@@ -130,17 +117,14 @@ How would you look for an interaction between birth weight and baby's sex in acc
 a. Compare survival of males to females at a given weight.
 b. Compare survival of males across different weights.
 c. Compare survival of females across different weights.
-d. RIGHT Compare the difference in survival between males and females across different weights.
+d. Compare the difference in survival between males and females across different weights.
 
 ```{r echo = FALSE}
-C06_S2008_101$id4 <- "C06-S2008-101-4"
-MC_question(C06_S2008_101$id4, 
+MC_question("C06-S2008-101-4", 
             a = "not right",
             b = "still not right",
             c = "no, that's not it.",
             d = "**RIGHT**")
-callModule(MC, C06_S2008_101$id4, C06_S2008_101$id4,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 
 
@@ -151,12 +135,9 @@ weight and sex in accounting for survival?  (Take substantial to
 mean "greater than 10 percentage points.") 
 
 ```{r echo = FALSE}
-C06_S2008_101$id5 <- "C06-S2008-101-5"
-MC_question(C06_S2008_101$id5, 
+MC_question("C06_S2008_101-5", 
             yes = "**WRONG**",
             no  = "**RIGHT**")
-callModule(MC, C06_S2008_101$id5, C06_S2008_101$id5,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 
 ### Question 6
@@ -168,18 +149,15 @@ b. Compare survival of males between steroid given and steroid not
   given.
 c. Compare survival of females between steroid given and steroid
   not given.
-d. RIGHT Compare the difference in survival between males and females
+d. Compare the difference in survival between males and females
   between steroid given and steroid not given.
 
 ```{r echo = FALSE}
-C06_S2008_101$id6 <- "C06-S2008-101-6"
-MC_question(C06_S2008_101$id6, 
+MC_question("C06_S2008_101-6", 
             a = "not right",
             b = "still not right",
             c = "no, that's not it.",
             d = "**RIGHT**")
-callModule(MC, C06_S2008_101$id6, C06_S2008_101$id6,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 
 
@@ -188,11 +166,8 @@ callModule(MC, C06_S2008_101$id6, C06_S2008_101$id6,
 Do you see signs of a substantial interaction between steroid use and sex in accounting for survival?  (Take substantial to mean "greater than 10 percentage points.") 
 
 ```{r echo = FALSE}
-C06_S2008_101$id7 <- "C06-S2008-101-7"
-MC_question(C06_S2008_101$id7, 
+MC_question("C06_S2008_101-7", 
             yes = "**WRONG**",
             no  = "**RIGHT**")
-callModule(MC, C06_S2008_101$id7, C06_S2008_101$id7,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 

@@ -4,8 +4,14 @@ MCinput <-
     ns <- NS(id)
 
     tagList(
-      selectInput(ns("choices"), label = id, choice_list, selected = NULL),
-      textOutput(ns("result")),
+      div(style="display:inline-block",
+          selectInput(ns("choices"), label = NULL, choice_list,
+                  selected = NULL, width = "100pt")),
+      div(style="display:inline-block",
+          textOutput(ns("result"))),
+      div(style="display:inline-block",
+          a(href="#", title="The item id.",
+            span(title=id, " #"))),
       div(style="display:none",
           numericInput(ns("attempts"), label = NULL, value = 0)
       )
@@ -54,9 +60,8 @@ update_scorekeeper <- function(problem, score, answer, attempts) {
 }
 
 #' @export
-MC_question <- function(id, ...) {
+MC_question <- function(id, ..., hints = TRUE) {
   choices <- list(...)
-
 
   choices <- c("Choose one." = "**EMPTY**You haven't answered yet.",
                choices)
@@ -67,6 +72,8 @@ MC_question <- function(id, ...) {
     paste0("**WRONG", empty_response, "**")
   shown_text <- names(choices)
   choices[] <- as.list(paste0(shown_text, ":::", choices[]))
+  callModule(MC, id, id, hints = hints)
+
   MCinput(id, choices)
 }
 

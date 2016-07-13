@@ -22,23 +22,15 @@ For each of the following questions, indicate which is the response variable and
 a. Are men paid more than women? 
     - Response variable:
 ```{r echo = FALSE}
-C06_M102$id1r <- "M102-ar" # not just the value, but the variable
-# name needs to be unique.
-MC_question(C06_M102$id1r, 
+MC_question("C06_M102-ar", hints = TRUE,
             "age", "sex", "race", "years.experience",
             salary = "**RIGHT**", "promoted","laid.off")
-callModule(MC, C06_M102$id1r, C06_M102$id1r,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
     - Explanatory variable
 ```{r echo = FALSE}
-C06_M102$id1x <- "M102-ax" # not just the value, but the variable
-# name needs to be unique.
-MC_question(C06_M102$id1x, 
+MC_question("C06_M102-ax", 
             "age", sex = "**RIGHT**", "race", "years.experience",
             "salary", "promoted", "laid.off")
-callModule(MC, C06_M102$id1x, C06_M102$id1x,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 
 ```{asis}
@@ -50,23 +42,15 @@ In examining possible employment discrimination, the issue is whether a person's
 b. On average, how much extra salary is a year of experience worth? 
     - Response variable:
 ```{r echo = FALSE}
-C06_M102$id2r <- "M102-br" # not just the value, but the variable
-# name needs to be unique.
-MC_question(C06_M102$id2r, 
+MC_question("C06_M102-br", 
             "age", "sex", "race", "years.experience",
             salary = "**RIGHT**", "promoted","laid.off")
-callModule(MC, C06_M102$id2r, C06_M102$id2r,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
     - Explanatory variable
 ```{r echo = FALSE}
-C06_M102$id2x <- "M102-bx" # not just the value, but the variable
-# name needs to be unique.
-MC_question(C06_M102$id2x, 
+MC_question("C06_M102-bx", 
             "age", "sex", "race", "years.experience" = "**RIGHT**",
             "salary", "promoted", "laid.off")
-callModule(MC, C06_M102$id2x, C06_M102$id2x,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 
 ```{asis}
@@ -77,23 +61,15 @@ variable is how much experience they have.
 c. Are whites more likely than blacks to be promoted? 
     - Response variable:
 ```{r echo = FALSE}
-C06_M102$id3r <- "M102-cr" # not just the value, but the variable
-# name needs to be unique.
-MC_question(C06_M102$id3r, 
+MC_question("C06_M102-cr", 
             "age", "sex", "race", "years.experience",
             "salary", "promoted" = "**RIGHT**","laid.off")
-callModule(MC, C06_M102$id3r, C06_M102$id3r,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
     - Explanatory variable
 ```{r echo = FALSE}
-C06_M102$id3x <- "M102-cx" # not just the value, but the variable
-# name needs to be unique.
-MC_question(C06_M102$id3x, 
+MC_question("C06_M102-cx", 
             "age", "sex", "race" = "**RIGHT**", "years.experience",
             "salary", "promoted", "laid.off")
-callModule(MC, C06_M102$id3x, C06_M102$id3x,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 
 ```{asis}
@@ -103,21 +79,15 @@ The response variable is whether the person was promoted or not.
 d. Are older employees more likely to be laid off than younger ones?  
     - Response variable:
 ```{r echo = FALSE}
-C06_M102$id4r <- "M102-dr" 
-MC_question(C06_M102$id4r, 
+MC_question("C06_M102-dr", 
             "age", "sex", "race", "years.experience",
             "salary", "promoted","laid.off" = "**RIGHT**")
-callModule(MC, C06_M102$id4r, C06_M102$id4r,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
     - Explanatory variable
 ```{r echo = FALSE}
-C06_M102$id4x <- "M102-dx" 
-MC_question(C06_M102$id4x, 
+MC_question("C06_M102-dx",
             "age" = "**RIGHT**", "sex", "race", "years.experience",
             "salary", "promoted", "laid.off")
-callModule(MC, C06_M102$id4x, C06_M102$id4x,
-           hints = ifelse(exists("show_hints"), show_hints, FALSE ))
 ```
 
 ```{asis}

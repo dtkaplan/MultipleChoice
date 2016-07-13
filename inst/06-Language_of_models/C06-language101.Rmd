@@ -1,0 +1,20 @@
+---
+title: "Drawing graphics"
+author: "Daniel Kaplan"
+date: "2008"
+output: html_document
+runtime: shiny
+---
+
+```{r include = FALSE}
+library(statisticalModeling)
+library(mosaicData)
+```
+
+Here is a display constructed using the Current Population Survey wage data:
+
+```{r echo = FALSE}
+gf_boxplot(wage ~ sector + color:sex, data = CPS85)
+```
+
+Read the graphic to determine which variable is playing which role: x-axis, y-axis, color, etc. Then reconstruct the command to reproduce the graph.
