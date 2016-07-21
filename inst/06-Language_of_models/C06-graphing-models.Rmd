@@ -5,38 +5,70 @@
 library(mosaic)
 library(statisticalModeling)
 library(MultipleChoice)
+tutorial::go_interactive()
 ```
 
 Given data and a model design, the computer will find the model function and model values for you.  As an example, consider the Current Population Survey  data `mosaicData::CPS85`.  Suppose you want to build a model with `wage` as a response variable and `age` and `sex` as explanatory variables incorporated as main terms.  Also include the intercept term, as usual.
-
-Using the model design language, this model is `wage` ~ 1 + `age` + `sex`.
-
-Use the `lm` operator to find the model function:
-```{r }
-mod1 <- lm( wage ~ 1 + age + sex, data = CPS85)
-```
-
 
 The two arguments to `lm()` are:
 
 #. the model design, expressed as a formula: `wage` ~ 1 + `age` + `sex`.
 #. the data to be used: `data = CPS85`  
 
+```{r }
+data(CPS85, package = "mosaicData")
+mod1 <- lm( wage ~ 1 + age + sex, data = CPS85)
+```
+
+
+
+
 The `mod1 <- `... part of the command simply gives the model a
 name so that you can use it later on.  If you construct more than one
-model, it makes sense to give them different names.  But don't re-use
-the name of the data frame; a name can be used for only one thing at a
-time.
+model, it makes sense to give them different names. 
 
 In making a graph of the function, the model values will always be plotted on the vertical axis.  But you have a choice of what to put on the horizontal axis.  This plot puts the quantitative variable `age` on the x-axis, and uses color for `sex`.
 
-```{r}
+```{r echo = FALSE}
 fmodel(mod1, ~ age + sex)
 ```
 
 You could arrange things the other way as well.
-```{r}
+```{r, echo = FALSE}
 fmodel(mod1, ~ sex + age)
 ```
 
 Note that the line in this plot is merely to guide the eye. The `sex` variable is categorical and so it's meaningless to interpolate between values.
+
+Your task ... re-create each of the above graphs using the `fmodel()` command. The two arguments to `fmodel()` are
+
+1. The model object itself, in this case `mod1`.
+2. A formula describing which roles the explanatory variable will play in the plot, e.g. `~ age + sex` or `~ sex + age`.
+
+```{r ex="create_a", type="pre-exercise-code"}
+b <- 5
+```
+
+```{r ex="create_a", type="sample-code"}
+# Create a variable a, equal to 5
+
+
+# Print out a
+
+```
+
+```{r ex="create_a", type="solution"}
+# Create a variable a, equal to 5
+a <- 5
+
+# Print out a
+a
+```
+
+```{r ex="create_a", type="sct"}
+test_object("a")
+test_output_contains("a", incorrect_msg = "Make sure to print `a`.")
+success_msg("Great!")
+```
+
+

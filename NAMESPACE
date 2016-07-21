@@ -3,4 +3,4 @@
 export(MC)
 export(MC_question)
 export(MCinput)
-export(update_scorekeeper)
+export(createScorekeeper)

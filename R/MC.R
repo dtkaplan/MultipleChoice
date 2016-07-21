@@ -18,10 +18,11 @@ MCinput <-
     )
   }
 #' @export
-MC <- function(input, output, session, my_name, hints=TRUE, attempts = 0) {
+MC <- function(input, output, session, my_name, hints=TRUE, for_scores = NULL) {
   output$result <- renderText({
-    if (input$choices == "Choose one.") return("You haven't answered yet.")
-    else {
+    if (grepl("You haven't answered yet.", input$choices)) {
+      return("You haven't answered yet.")
+    } else {
       score <- as.numeric(grepl("\\*\\*RIGHT\\*\\*", input$choices))
       # grab information from the input value
       to_show <- value <- input$choices
@@ -32,35 +33,24 @@ MC <- function(input, output, session, my_name, hints=TRUE, attempts = 0) {
 
       answer_choice <- gsub(":::.*$", "", value)
 
-      updateNumericInput(session, "attempts", value = isolate(input$attempts) + 1)
-      update_scorekeeper(my_name, score, answer_choice, isolate(input$attempts))
+      # next line not needed since attempts in tabulated in the scorekeeper
+      # updateNumericInput(session, "attempts", value = isolate(input$attempts) + 1)
+      if (is.null(for_scores)) warning("No scorekeeper created.")
+      else for_scores$update(my_name, score, answer_choice)
 
-      cat(my_name, "\n")
+      # cat(my_name, "\n")
 
       if (hints) to_show
     }
   })
 }
 
-#' @export
-update_scorekeeper <- function(problem, score, answer, attempts) {
-  ind <- which(problem == Scorekeeper$problem)
-  if (length(ind) == 0) {
-    # add a new one
-    Scorekeeper$score <<- c(Scorekeeper$score, NA)
-    Scorekeeper$problem <<- c(Scorekeeper$problem, problem)
-    Scorekeeper$answer <<- c(Scorekeeper$answer, answer)
-    Scorekeeper$attempts <<- c(Scorekeeper$attempts, attempts)
-  } else {
-    # update it
-    Scorekeeper$attempts[ind] <<- 1 + Scorekeeper$attempts[ind]
-    Scorekeeper$score[ind] <<- score
-    Scorekeeper$answer[ind] <<- answer
-  }
-}
 
 #' @export
 MC_question <- function(id, ..., hints = TRUE) {
+  if ( ! exists(".the_scorekeeper", envir = .GlobalEnv) )
+    stop("Must create '.the_scorekeeper' in the global environment")
+  for_scores <- eval(.the_scorekeeper, env = .GlobalEnv)
   choices <- list(...)
 
   choices <- c("Choose one." = "**EMPTY**You haven't answered yet.",
@@ -72,7 +62,7 @@ MC_question <- function(id, ..., hints = TRUE) {
     paste0("**WRONG", empty_response, "**")
   shown_text <- names(choices)
   choices[] <- as.list(paste0(shown_text, ":::", choices[]))
-  callModule(MC, id, id, hints = hints)
+  callModule(MC, id, id, hints = hints, for_scores)
 
   MCinput(id, choices)
 }

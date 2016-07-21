@@ -1,0 +1,36 @@
+---
+title: "Chapter 6 Essay Questions"
+subtitle: "Statistical Modeling: A Fresh Approach"
+author: "Daniel Kaplan"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html: default
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+# whether or not to show the answers
+.show_answers <- TRUE
+```
+
+## Problem 6.1
+
+```{r child = "C06-S2008-lang2.Rmd"}
+```
+
+## Problem 6.2
+
+```{r child = "C06-Prob-4-3.Rmd"}
+```
+

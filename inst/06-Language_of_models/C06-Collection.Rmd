@@ -8,9 +8,26 @@ runtime: shiny
 
 ```{r include=FALSE}
 require(MultipleChoice)
-Scorekeeper <<- list(problem=NULL, attempts=NULL, score=NULL)
+.the_scorekeeper <<- createScorekeeper()
 show_hints <- TRUE
 ```
+
+```{r echo = FALSE}
+actionButton("update", "Send scores.")
+
+tableOutput("scores")
+output$scores <- renderTable({
+  if (input$update == 0) return(NULL)
+  .the_scorekeeper$save_scores("DTK", "assignment 1", "my IP", "scoresDTK.Rda")
+  foo <- .the_scorekeeper$report()
+  foo$when <- as.character(foo$when) # display sensibly the time stamp
+ 
+  foo
+  
+})
+
+```
+
 
 # Multiple Choice
 
@@ -24,59 +41,23 @@ show_hints <- TRUE
 ```{r child = "C06-M102.Rmd"}
 ```
 
-## Scores on the multiple choice questions
+## Problem 3
 
-```{r echo = FALSE}
-actionButton("update", "Send scores.")
-tableOutput("scores")
-output$scores <- renderTable({
-  if (input$update == 0) return(NULL)
-  data.frame(problem = Scorekeeper$problem, 
-             answer = Scorekeeper$answer,
-             attempts = Scorekeeper$attempts, 
-             score = Scorekeeper$score, 
-             stringsAsFactors = FALSE)
-})
+```{r child = "C06-M105.Rmd"}
 ```
+
+
+
+
+
 
 
 
 # Computational Technique
 
-## DataCamp 1
+- `C06-graphing-models.Rmd` --- need to move to datacamp
+- Problem idea: Show graphs of fitted models. Ask the student to make them. e.g. the swim-records data
+- `C06-S2008-var1.Rmd` --- moved (in part) to the Motivating Statistics datacamp repository
+- `C06-language101.Rmd` --- moved to Motivating Statistics
 
-```{r child = "C06-graphing-models.Rmd"}
-```
 
-## A related problem idea for DataCamp
-
-Show graphs of fitted models. Ask the student to make them.
-
-## DataCamp 2
-
-```{r child = "C06-S2008-var1.Rmd"}
-```
-
-## DataCamp 3
-
-```{r child = "C06-language101.Rmd"}
-```
-
-# Essays
-
-## One
-
-```{r child = "C06-S2008-lang2.Rmd"}
-```
-
-## Two
-
-```{r child = "C06-Prob-4-3.Rmd"}
-```
-
-NOTE TO AUTHOR: see "C06-S2007-9.Rmd" which seems to be the same problem, but hand-written
-
-## Three
-
-```{r child = "C06-M105.Rmd"}
-```

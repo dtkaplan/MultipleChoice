@@ -1,5 +1,16 @@
-<!--  Author: Danny Kaplan -->
-<!--  Subject: model terms -->
+---
+title: "The Collegiate Learning Assessment"
+author: "Daniel Kaplan"
+date: "2008"
+output: html_document
+runtime: shiny
+---
+```{r include = FALSE}
+library(MultipleChoice)
+if ( ! exists(".show_answers")) .show_answers <- TRUE
+Scorekeeper <<- list(problem=NULL, attempts=NULL, score=NULL)
+```
+
 
 The graphic is part of a report describing a standardized test for college graduates, the Collegiate Learning Assessment (CLA).  The test consists of several essay questions which probe students' critical thinking skills.  
 
@@ -19,10 +30,21 @@ There are three variables involved in the graphic:
 #. `class` --- Whether the CLA test was taken by freshmen or seniors. (In the graph: blue for freshmen, red for seniors)
 
 
-* What model is being depicted by the straight lines in the graph?  Give your answer in the standard modeling notation (e.g, A ~ B + C) using the variable names above.  Make sure to indicate what interaction term, if any, has been included in the model and explain how you can tell whether the interaction is or is not there.
+What model is being depicted by the straight lines in the graph?  Give your answer in the standard modeling notation (e.g, A ~ B + C) using the variable names above.  Make sure to indicate what interaction term, if any, has been included in the model and explain how you can tell whether the interaction is or is not there.
+
+```{r echo = FALSE}
+MC_question("C06_M105-1", 
+            "cla ~ sat" = "What about the separate lines?",
+            "sat ~ cla" = "sat is not the response variable",
+            "cla ~ class" = "What's the continuous variable involved?",
+            "cla ~ sat + class" = "**RIGHT**" ,
+            "cla ~ sat * class" = "**RIGHT**",
+            "sat ~ cla + class" = "sat is not the response variable", 
+            "sat ~ cla * class" = "sat is not the response variable")
+```
 
 
-```{asis}
+```{block echo = .show_answers}
 ANSWER: The response variable --- on the vertical axis --- is the `CLA score`. There is obviously a separate line for each group --- red or blue, referring to seniors or freshmen.  The question is whether the lines are parallel  or not.  If the lines are not parallel, there must be an interaction term: `cla` ~ `sat`*`class`.  
 
 If the lines are exactly parallel, the model is `cla` ~ `sat`+`class`, without an interaction term. 

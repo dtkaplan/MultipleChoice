@@ -8,7 +8,7 @@ require(mosaic)
 require(dplyr)
 ```
 
-I'M NOT SURE WHAT TO DO WITH THIS ONE. IT COULD GO IN THE CHAPTER "What is explaining an outcome?" The distribution of the 
+I'M NOT SURE WHAT TO DO WITH THIS ONE. IT COULD GO IN THE CHAPTER "What is explaining an outcome?" The distribution of the groups are narrower than the distribution of the whole.
 
 
 Sometimes when making a graphic, you want to change some aspect of it
